@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.20;
 
-import {Test} from "forge-std/Test.sol";
+import {Test, console} from "forge-std/Test.sol";
 import {DeployBox} from "../script/DeployBox.s.sol";
 import {UpgradeBox} from "../script/UpgradeBox.s.sol";
 import {BoxV1} from "../src/BoxV1.sol";
@@ -35,7 +35,9 @@ contract DeployAndUpgradeTest is Test {
         uint256 expectedValue = 2;
         assertEq(expectedValue, BoxV2(proxy).version());
 
+        console.log("BoxV2(proxy).getNumber()", BoxV2(proxy).getNumber());
         BoxV2(proxy).setNumber(7);
+        console.log("BoxV2(proxy).getNumber()", BoxV2(proxy).getNumber());
         assertEq(7, BoxV2(proxy).getNumber());
     }
 
